@@ -9,6 +9,10 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.jiahaoliuliu.storeobjecttopreferences.Preferences.StringId;
 import com.jiahaoliuliu.storeobjecttopreferences.model.SimpleModel;
+import com.jiahaoliuliu.storeobjecttopreferences.model.SimpleModel.SimpleEnum;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -31,8 +35,15 @@ public class MainActivity extends ActionBarActivity {
         preferences = Preferences.SingletonHolder.INSTANCE;
         preferences.initialize(this);
 
+        // Fill the data
         SimpleModel simpleModel = new SimpleModel();
         simpleModel.setFieldString("ContentString");
+        simpleModel.setFieldInteger(42);
+        simpleModel.setFieldSimpleEnum(SimpleEnum.FIRST_ENUM);
+        List<SimpleEnum> simpleEnumslist = new ArrayList<SimpleEnum>();
+        simpleEnumslist.add(SimpleEnum.SECOND_ENUM);
+        simpleEnumslist.add(SimpleEnum.FIRST_ENUM);
+        simpleModel.setFieldListSimpleEnum(simpleEnumslist);
 
         Gson gson = new Gson();
         String dataToBeSaved = gson.toJson(simpleModel, SimpleModel.class);

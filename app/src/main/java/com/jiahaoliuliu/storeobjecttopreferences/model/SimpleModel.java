@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class SimpleModel {
 
-    private enum SimpleEnum {
+    public enum SimpleEnum {
         FIRST_ENUM, SECOND_ENUM;
     }
 
